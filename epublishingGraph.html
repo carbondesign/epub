@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html ng-app>
+	<head >
+		<title>Bob</title>
+		<meta charset="utf-8">
+		<style>
+
+			.chart rect {
+				stroke: white;
+				fill: steelblue;
+				}
+			.chart text {
+				font: 10px sans-serif;
+				fill: white;
+			}
+			.accessible{
+				background-color: green;
+			}
+			.accessible-not{
+				background-color: transparent;
+			}
+			.unaccessible-not, .unaccessible{
+				background-color: pink;
+			}
+
+
+		</style>
+		<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+		<!--<script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>-->
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+				var data = [4, 8, 15, 16, 23, 42];
+				var chart = d3.select("#chartContainer").append("svg")
+					.attr("class", "chart")
+					.attr("width", 420)
+					.attr("height", 20 * data.length);
+				chart.selectAll("div")
+					.data(data)
+					.enter().append("div")
+					.style("width", function(d) { return d * 10 + "px"; })
+					
+				var x = d3.scale.linear()
+					.domain([0, d3.max(data)])
+					.range(["0", "420"]);
+				var y = d3.scale.ordinal()
+					.domain(data)
+					.rangeBands([0, 120]);
+				chart.selectAll("rect")
+					.data(data)
+					.enter().append("rect")
+					.attr("y", y)
+					.attr("width", x)
+					.attr("height", y.rangeBand())
+					.text(String);
+				chart.selectAll("text")
+					.data(data)
+					.enter().append("text")
+					.attr("x", x)
+					.attr("y", function(d) { return y(d) + y.rangeBand() / 2; })
+					.attr("dx", -3) // padding-right
+					.attr("dy", ".35em") // vertical-align: middle
+					.attr("text-anchor", "end") // text-align: right
+					.text(String);
+			    
+			});
+
+			function formatCtrl($scope) {
+			 	$scope.devices = [
+			 		{
+			 			"category":"Desktop",			 		
+			 			"EPUB":"yes",
+			 			"PDF":"yes",
+			 			"PubApp":"no"
+		 			},
+		 			{
+			 			"category":"Tablet",			 			
+		 				"EPUB":"yes",
+		 				"PDF":"depends",
+		 				"PubApp":"yes"
+			 		},
+			 		{
+			 			"category":"Phone",
+		 				"EPUB":"yes",
+		 				"PDF":"no",
+		 				"PubApp":"depends"
+			 			
+			 		}
+			 	];
+
+			  	$scope.formats = [
+			  	    {
+			  	    	"name": "EPUB",
+			  	     	"accessible": "yes",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"yes",
+				  	     	"tablet":"yes",
+				  	     	"phone":"yes"
+			  	     	},
+			  	     	"reflowable","yes",
+			  	     	"audio":"yes",
+			  	     	"video":"depends",
+			  	     	"video_markers":"no",
+			  	     	"hyperlinks":"yes",
+			  	     	"hyperlinks_internal":"no",
+			  	     	"pub_thumb":"partially",
+			  	     	"javascript":"partially",
+			  	     	"form":"no",
+			  	     	"button_actions":"no",
+			  	     	"multiple_actions":"no",
+			  	     	"zoomable":"no",
+			  	     	"pan":"no",
+			  	     	"slideshow":"no",
+			  	     	"video_slideshow":"no",
+			  	     	"content_replacement":"no",
+			  	     	"inpage_embeded_web":"no",
+			  	     	"panoramas":"no",
+			  	     	"3d":"no",
+			  	     	"in-page_scroll":"no",
+			  	     	"vectors":"yes",
+			  	     	"inpage_animated":"partially",
+			  	     	"drag_drop":"no",
+			  	     	"dynamic":"no",
+			  	     	"attachments":"yes",
+			  	     	"complex":{
+			  	     		"text":"text must be structured for correct flow",
+				  	     	"images_callouts":"images and callouts must be properly structured for correct flow",
+				  	     	"background_images":"must flatten text into an image",
+				  	     	"multi_sections":"sections, images, and story must be properly structured",
+				  	     	"tables":"info TK"
+			  	     	}
+			  	    },
+			  	    {
+			  	    	"name": "PDF",
+			  	     	"accessible": "yes",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"yes",
+				  	     	"tablet":"yes",
+				  	     	"phone":"no"
+			  	     	},
+			  	     	"reflowable","yes",
+  	     	  	     	"audio":"yes",
+  	     	  	     	"video":"yes",
+  	     	  	     	"video_markers":"yes",
+  	     	  	     	"hyperlinks":"yes",
+  	     	  	     	"hyperlinks_internal":"yes",
+  	     	  	     	"pub_thumb":"yes",
+  	     	  	     	"javascript":"yes",
+  	     	  	     	"form":"yes",
+  	     	  	     	"button_actions":"yes",
+  	     	  	     	"multiple_actions":"yes",
+  	     	  	     	"zoomable":"yes",
+  	     	  	     	"pan":"no",
+  	     	  	     	"slideshow":"yes",
+  	     	  	     	"video_slideshow":"yes",
+  	     	  	     	"content_replacement":"yes",
+  	     	  	     	"inpage_embeded_web":"partially",
+  	     	  	     	"panoramas":"no",
+  	     	  	     	"3d":"no",
+  	     	  	     	"in-page_scroll":"no",
+  	     	  	     	"vectors":"yes",
+  	     	  	     	"inpage_animated":"no",
+  	     	  	     	"drag_drop":"no",
+  	     	  	     	"dynamic":"yes",
+  	     	  	     	"attachments":"yes",
+  	     	  	     	"complex":{
+  	     	  	     		"text":"text must be structured for correct 508",
+  	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
+  	     		  	     	"tables":"tables must be properly structured for 508"
+  	     	  	     	}
+		  	     	},
+		  	     	{
+			  	    	"name": "Digital Replica",
+			  	     	"accessible": "no",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"no",
+				  	     	"tablet":"yes",
+				  	     	"phone":"depends"
+			  	     	},
+			  	     	"reflowable","partially",
+  	     	  	     	"audio":"yes",
+  	     	  	     	"video":"yes",
+  	     	  	     	"video_markers":"no",
+  	     	  	     	"hyperlinks":"yes",
+  	     	  	     	"hyperlinks_internal":"no",
+  	     	  	     	"pub_thumb":"yes",
+  	     	  	     	"javascript":"no",
+  	     	  	     	"form":"no",
+  	     	  	     	"button_actions":"no",
+  	     	  	     	"multiple_actions":"no",
+  	     	  	     	"zoomable":"yes",
+  	     	  	     	"pan":"partially",
+  	     	  	     	"slideshow":"no",
+  	     	  	     	"video_slideshow":"no",
+  	     	  	     	"content_replacement":"no",
+  	     	  	     	"inpage_embeded_web":"no",
+  	     	  	     	"panoramas":"no",
+  	     	  	     	"3d":"no",
+  	     	  	     	"in-page_scroll":"no",
+  	     	  	     	"vectors":"no",
+  	     	  	     	"inpage_animated":"no",
+  	     	  	     	"drag_drop":"no",
+  	     	  	     	"dynamic":"no",
+  	     	  	     	"attachments":"no",
+  	     	  	     	"complex":{
+  	     	  	     		"text":"text must be structured for correct 508",
+  	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
+  	     		  	     	"tables":"tables must be properly structured for 508"
+  	     	  	     	}
+			  	     },
+			  	    {
+			  	    	"name": "PubApp",
+			  	     	"accessible": "no",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"no",
+				  	     	"tablet":"yes",
+				  	     	"phone":"yes"
+			  	     	},
+			  	     	"reflowable","yes",
+  	     	  	     	"audio":"yes",
+  	     	  	     	"video":"yes",
+  	     	  	     	"video_markers":"yes",
+  	     	  	     	"hyperlinks":"yes",
+  	     	  	     	"hyperlinks_internal":"yes",
+  	     	  	     	"pub_thumb":"partially",
+  	     	  	     	"javascript":"yes",
+  	     	  	     	"form":"yes",
+  	     	  	     	"button_actions":"yes",
+  	     	  	     	"multiple_actions":"yes",
+  	     	  	     	"zoomable":"yes",
+  	     	  	     	"pan":"yes",
+  	     	  	     	"slideshow":"yes",
+  	     	  	     	"video_slideshow":"yes",
+  	     	  	     	"content_replacement":"yes",
+  	     	  	     	"inpage_embeded_web":"yes",
+  	     	  	     	"panoramas":"yes",
+  	     	  	     	"3d":"yes",
+  	     	  	     	"in-page_scroll":"yes",
+  	     	  	     	"vectors":"yes",
+  	     	  	     	"inpage_animated":"yes",
+  	     	  	     	"drag_drop":"yes",
+  	     	  	     	"dynamic":"yes",
+  	     	  	     	"attachments":"yes",
+  	     	  	     	"complex":{
+  	     	  	     		"text":"easy",
+  	     		  	     	"images_callouts":"images and callouts must be properly structured",
+  	     		  	     	"background_images":"must flatten text into an image",
+  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
+  	     		  	     	"tables":"info TK"
+  	     	  	     	}
+			  	     }
+			  	  ];
+
+						
+				//needs to be retought
+				//watch the checkboxes and if one changes, change the model
+				//console.log($scope)
+				$scope.deviceModel = function () {					
+
+
+						var deviceList = ["yes","yes","yes"];
+						if ($scope.deviceDesktop == true){
+							deviceList.splice(2, 1, "no");
+				       		// for (var i=0;i<$scope.formats.length;i++){
+				       		// 	deviceList.push($scope.formats[i].device.desktop);
+				       		// };       						 
+						}if ($scope.devicePhone == true){
+							deviceList.splice(1, 1, "no");
+							if(deviceList[2]=="yes"){deviceList.splice(2, 1, "depends");}
+						}if ($scope.deviceTablet == true){
+							if(deviceList[1]=="yes"){deviceList.splice(1, 1, "depends");}
+						};
+					return	deviceList 
+				}			
+			}
+				   			
+		</script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<label for="email">To use these tools you must provide your email. We never sell your information and limit our email campaigns to four times a year.</label>
+				<input id="email" type="email" name="email">
+			</div>
+			<div  class="row-fluid" id="chartContainer"></div>
+			<div  class="row-fluid" ng-controller="formatCtrl">
+				<h2>Which format is right for my project?</h2>
+				
+				<table class="table table-striped" >
+					<thead><tr><th></th><th>EPUB</td><th>PDF</th><th>Pub App</th></tr></thead>
+					<tbody>				
+						<tr>
+							<td>508?</td>
+							<td ng-repeat="format in formats" class="{{format.name}}">
+								<span ng-show="accessModel">
+									{{format.accessible}}
+								</span>
+								<span ng-hide="accessModel">
+									{{format.nonaccessible}}
+								</span>
+								
+							</td>
+						</tr>
+						<tr>
+							<td>Device</td>
+							<td ng-repeat="device in deviceModel()" class="">
+								<span>
+									{{device}}
+								</span>
+								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				
+				
+				<form>	
+					<div class="control-group">
+					    <div class="controls">	
+					    	<label class="control-label">Does your project need to be 508 compliant?  </label>
+							<label class="radio inline" for="accessible">
+								<input type="radio" ng-model="accessModel"  name="accessible" value="true" checked="checked"> Yes</input>
+							</label>
+							<label class="radio inline" for="accessible">
+								<input type="radio" ng-model="accessModel"  name="accessible" value="false"  > No </input>
+							</label>
+						</div>
+					</div>	
+					<label for="layout">How complex is your layout?</label>
+					<input type="range" name="layout" min="1" max="5">
+					<div class="control-group">
+					    <div class="controls" >	
+					    	<label class="control-label">Which devices will you product be distributed to?</label>
+					    	<!-- <label ng-repeat="device in devices" class="checkbox inline">
+					    		<input 
+					    			type="checkbox"  
+					    			value="{{device.category}}" 
+					    			ng-change="selectedDevice()" 
+					    			ng-model="deviceModel" "device.category"
+					    			>
+				    			<span>{{device.category}}</span>
+					    	</label> -->
+
+							<label class="checkbox inline">
+								<input ng-model="deviceDesktop" type="checkbox" value="desktop" ng-change="deviceModel()">Desktop</input>
+							</label>
+							<label class="checkbox inline">
+								<input ng-model="deviceTablet" type="checkbox" ng-change="deviceModel()" value="ipad">Tablet</input>
+							</label>
+							<label class="checkbox inline">
+								<input ng-model="devicePhone" type="checkbox" ng-change="deviceModel()" value="phone">Phone</input>
+							</label>
+							
+						</div>
+					</div>
+
+				</form>
+			</div>
+			<div class="row-fluid">
+				<h2>What is my recomended project timeline?</h2>
+				<form>
+					<label for="fontSize">What is the average font size and leading?</label>
+					<input id="fontSize" name="fontSize" type="text" placeholder="font size"></input>/<input id="leading" name="leading" type="text" placeholder="leading"></input>
+					<label for="wordCount">What is the average font size and leading?</label>
+					<input id="wordCount" name="wordCount" type="text" placeholder="fontSize"></input>
+					<label for="pageTotal">How many total page for this document?</label>
+					<input id="pageTotal" name="pageTotal" type="text" placeholder="number of pages"></input>
+					<label for="startDate">When is the earliest you can start this project?</label>
+					<input id="startDate"type="date" name="startDate">
+					<label for="endDate">When is the project due to the client?</label>
+					<input id="endDate"type="date" name="endDate">
+				</form>
+			</div>
+		</div>
+
+	</body>
+
+
+	
+</html>
