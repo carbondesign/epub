@@ -139,8 +139,8 @@
 			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"yes",
-				  	     	"tablet":"yes",
-				  	     	"phone":"no"
+				  	     	"tablet":"depends",
+				  	     	"phone":"depends"
 			  	     	},
 			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
@@ -170,7 +170,7 @@
   	     	  	     	"complex":{
   	     	  	     		"text":"text must be structured for correct 508",
   	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     	  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
   	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
   	     		  	     	"tables":"tables must be properly structured for 508"
   	     	  	     	}
@@ -224,7 +224,49 @@
 			  	     	"device":{
 				  	     	"desktop":"no",
 				  	     	"tablet":"yes",
-				  	     	"phone":"yes"
+				  	     	"phone":"depends"
+			  	     	},
+			  	     	"reflowable":"no",
+  	     	  	     	"audio":"yes",
+  	     	  	     	"video":"yes",
+  	     	  	     	"video_markers":"no",
+  	     	  	     	"hyperlinks":"yes",
+  	     	  	     	"hyperlinks_internal":"partially",
+  	     	  	     	"pub_thumb":"yes",
+  	     	  	     	"javascript":"partially",
+  	     	  	     	"form":"partially",
+  	     	  	     	"button_actions":"yes",
+  	     	  	     	"multiple_actions":"yes",
+  	     	  	     	"zoomable":"yes",
+  	     	  	     	"pan":"yes",
+  	     	  	     	"slideshow":"yes",
+  	     	  	     	"video_slideshow":"yes",
+  	     	  	     	"content_replacement":"yes",
+  	     	  	     	"inpage_embeded_web":"yes",
+  	     	  	     	"panoramas":"yes",
+  	     	  	     	"3d":"yes",
+  	     	  	     	"in-page_scroll":"yes",
+  	     	  	     	"vectors":"no",
+  	     	  	     	"inpage_animated":"no",
+  	     	  	     	"drag_drop":"no",
+  	     	  	     	"dynamic":"yes",
+  	     	  	     	"attachments":"no",
+  	     	  	     	"complex":{
+  	     	  	     		"text":"easy",
+  	     		  	     	"images_callouts":"images and callouts must be properly structured",
+  	     		  	     	"background_images":"must flatten text into an image",
+  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
+  	     		  	     	"tables":"info TK"
+  	     	  	     	}
+			  	     },
+			  	     {
+			  	    	"name": "HTML5",
+			  	     	"accessible": "yes",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"no",
+				  	     	"tablet":"yes",
+				  	     	"phone":"depends"
 			  	     	},
 			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
@@ -250,7 +292,7 @@
   	     	  	     	"inpage_animated":"yes",
   	     	  	     	"drag_drop":"yes",
   	     	  	     	"dynamic":"yes",
-  	     	  	     	"attachments":"yes",
+  	     	  	     	"attachments":"no",
   	     	  	     	"complex":{
   	     	  	     		"text":"easy",
   	     		  	     	"images_callouts":"images and callouts must be properly structured",
@@ -268,17 +310,17 @@
 				$scope.deviceModel = function () {					
 
 
-						var deviceList = ["yes","yes","yes"];
+						var deviceList = ["yes","yes","yes", "yes", "yes"];
 						if ($scope.deviceDesktop == true){
-							deviceList.splice(2, 1, "no");
+							deviceList.splice(3, 1, "no");
 				       		// for (var i=0;i<$scope.formats.length;i++){
 				       		// 	deviceList.push($scope.formats[i].device.desktop);
 				       		// };       						 
 						}if ($scope.devicePhone == true){
-							deviceList.splice(1, 1, "no");
+							deviceList.splice(1, 1, "no"); deviceList.splice(2, 1, "no");
 							if(deviceList[2]=="yes"){deviceList.splice(2, 1, "depends");}
 						}if ($scope.deviceTablet == true){
-							if(deviceList[1]=="yes"){deviceList.splice(1, 1, "depends");}
+							if(deviceList[1]=="yes"){deviceList.splice(1, 1, "depends"); deviceList.splice(2, 1, "depends");}
 						};
 					return	deviceList 
 				}			
@@ -297,7 +339,7 @@
 				<h2>Which format is right for my project?</h2>
 				
 				<table class="table table-striped" >
-					<thead><tr><th></th><th>EPUB</td><th>PDF</th><th>Pub App</th></tr></thead>
+					<thead><tr><th>Feature</th><th ng-repeat="head in formats">{{head.name}}</th></thead>
 					<tbody>				
 						<tr>
 							<td>508?</td>
