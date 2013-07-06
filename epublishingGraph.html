@@ -396,11 +396,15 @@
 					$epubTcol.each(function (){
 						$catname = $(this).text();
 						//setup arrays for each collumn with key pairs
-						
+						for ( var i = 1; i < a.length; i++ ) {
+							var name = "set" + i + "()";
+							var obj = eval("(" + name + ")");
 						gridObj[$catname] = {
-							data:set1()
+							data:obj
 							}
+						}
 					});
+					console.log(gridObj)
 
 
 
