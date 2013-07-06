@@ -299,26 +299,129 @@
 			  	  ];
 
 						
-				//needs to be retought
-				//watch the checkboxes and if one changes, change the model
-				//console.log($scope)
-				$scope.deviceModel = function () {					
-
+				$scope.deviceModel = function () {	
+						//might fix this with a do while ? runs three times				
+						$scope.checkTotal();
 
 						var deviceList = ["yes","yes","yes", "yes", "yes"];
 						if ($scope.deviceDesktop == true){
-							deviceList.splice(3, 1, "no");
-				       		// for (var i=0;i<$scope.formats.length;i++){
-				       		// 	deviceList.push($scope.formats[i].device.desktop);
-				       		// };       						 
+							deviceList.splice(3, 1, "no");  						 
 						}if ($scope.devicePhone == true){
 							deviceList.splice(1, 1, "no"); deviceList.splice(2, 1, "no");
 							if(deviceList[2]=="yes"){deviceList.splice(2, 1, "depends");}
 						}if ($scope.deviceTablet == true){
 							if(deviceList[1]=="yes"){deviceList.splice(1, 1, "depends"); deviceList.splice(2, 1, "depends");}
 						};
-					return	deviceList 
-				}			
+
+					return	deviceList; 
+				};
+				$scope.checkTotal = function (){
+					//create a master grid object
+					var gridObj = {}
+					//find out howmany rows and colllums
+					var $epubTrow = $('table#featuresList tbody tr');
+					var $epubTcol = $('table#featuresList thead tr').first().find("th");
+					
+					
+
+					
+					///can't figure this out...wil do a stackoverflow on it.
+					var masterArray = new Array();
+						for ( var i = 1; i < $epubTcol.length+1; i++ ) {
+							var $arrayName = new Array();
+							$epubTrow.each(function (){
+								$arrayName.push($(this).find("td:nth-child("+i+")").text().replace(/\t/g,'').replace(/[\n\r]/g,''));							
+							});
+							masterArray.push($arrayName);
+							
+						};
+					var masterPairCount = [], a = masterArray[0], prev;
+					var set1 = function(){
+						//creates a set. set needs to be added to masterPairCount
+					    var  b = masterArray[1], keyPairCount = [];					   
+					  	for ( var i = 0; i < a.length; i++ ) {
+						  	keyPairCount[a[i]]= b[i];	
+					  	};
+					  	return keyPairCount;
+					};
+					var set2 = function(){
+						var  b = masterArray[2], keyPairCount = [];
+
+					  	for ( var i = 0; i < a.length; i++ ) {
+						  	keyPairCount[a[i]]= b[i];	
+					  	};
+					  	return keyPairCount;
+				  	};
+				  	var set3 = function(){
+						var  b = masterArray[3], keyPairCount = [];
+
+					  	for ( var i = 0; i < a.length; i++ ) {
+						  	keyPairCount[a[i]]= b[i];	
+					  	};
+					  	return keyPairCount;
+				  	};
+				  	var set4 = function(){
+						var  b = masterArray[4], keyPairCount = [];
+
+					  	for ( var i = 0; i < a.length; i++ ) {
+						  	keyPairCount[a[i]]= b[i];	
+					  	};
+					  	return keyPairCount;
+				  	};
+				  	var set5 = function(){
+						var  b = masterArray[5], keyPairCount = [];
+
+					  	for ( var i = 0; i < a.length; i++ ) {
+						  	keyPairCount[a[i]]= b[i];	
+					  	};
+					  	return keyPairCount;
+				  	}
+				  	
+				  	 masterPairCount.push(set1());
+				  	 masterPairCount.push(set2());
+				  	 masterPairCount.push(set3());
+				  	 masterPairCount.push(set4());
+				  	 masterPairCount.push(set5());
+				  	 console.log(masterPairCount)
+					  
+					  	
+					  
+					  
+
+  	
+
+				  	
+
+				  	//add the headers to the object
+					$epubTcol.each(function (){
+						$catname = $(this).text();
+						//setup arrays for each collumn with key pairs
+						
+						gridObj[$catname] = {
+							data:set1()
+							}
+					});
+
+
+
+				    // for ( var i = 1; i < masterArray.length; i++ ) {
+				    // 	masterArray[i].sort();
+				    //     if ( masterArray[i] !== prev ) {
+				    //         a.push(masterArray[i]);
+				    //         b.push(1);
+				    //     } else {
+				    //         b[b.length-1]++;
+				    //     }
+				    //     prev = ("epub"+i)[i];
+				    // }return [a, b];
+				    
+
+				   
+				    
+				    //console.log(gridObj);
+				    
+
+				}		
 			}
 				   			
 		</script>
@@ -333,17 +436,32 @@
 			<div  class="row-fluid" ng-controller="formatCtrl">
 				<h2>Which format is right for my project?</h2>
 				
-				<table class="table table-striped" >
+				<table class="table table-striped" id="featuresList">
 					<thead><tr><th>Feature</th><th ng-repeat="head in formats">{{head.name}}</th></thead>
 					<tbody>				
-						<tr>
-							<td>508?</td>
+						<tr ng-show="accessModel">
+							<td>508</td>
 							<td ng-repeat="format in formats" class="{{format.name}}">
-								<span ng-show="accessModel">
+								<span >
 									{{format.accessible}}
 								</span>
-								<span ng-hide="accessModel">
-									{{format.nonaccessible}}
+								
+							</td>
+						</tr>
+						<tr ng-show="audioModel">
+							<td>Audio</td>
+							<td ng-repeat="format in formats" class="{{format.name}}">
+								<span >
+									{{format.audio}}
+								</span>
+								
+							</td>
+						</tr>
+						<tr ng-show="videoModel">
+							<td>Video</td>
+							<td ng-repeat="format in formats" class="{{format.name}}">
+								<span >
+									{{format.video}}
 								</span>
 								
 							</td>
@@ -365,8 +483,17 @@
 					<div class="control-group">
 					    <div class="controls">	
 					    	<label class="control-label">Does your project need to be 508 compliant?  </label>
-							<label class="radio inline" for="accessible">
-								<input type="checkbox" ng-model="accessModel"  name="accessible" value="true"> Yes
+							<label class="checkbox inline" for="accessible">
+								<input  ng-change="checkTotal()" type="checkbox" ng-model="accessModel"  name="accessible" value="true"> Yes
+							</label>
+
+					    	<label class="control-label">Does your project use audio?  </label>
+							<label class="checkbox inline" for="audio">
+								<input ng-change="checkTotal()" type="checkbox" ng-model="audioModel" name="audio"> Yes
+							</label>
+							<label class="control-label">Does your project use video?  </label>
+							<label class="checkbox inline" for="video">
+								<input ng-change="checkTotal()" type="checkbox" ng-model="videoModel" name="video"> Yes
 							</label>
 						</div>
 					</div>	
@@ -375,15 +502,6 @@
 					<div class="control-group">
 					    <div class="controls" >	
 					    	<label class="control-label">Which devices will you product be distributed to?</label>
-					    	<!-- <label ng-repeat="device in devices" class="checkbox inline">
-					    		<input 
-					    			type="checkbox"  
-					    			value="{{device.category}}" 
-					    			ng-change="selectedDevice()" 
-					    			ng-model="deviceModel" "device.category"
-					    			>
-				    			<span>{{device.category}}</span>
-					    	</label> -->
 
 							<label class="checkbox inline">
 								<input ng-model="deviceDesktop" type="checkbox" value="desktop" ng-change="deviceModel()">Desktop</input>
