@@ -71,21 +71,15 @@
 			 	$scope.devices = [
 			 		{
 			 			"category":"Desktop",			 		
-			 			"EPUB":"yes",
-			 			"PDF":"yes",
-			 			"PubApp":"no"
+			 			"checked":true
 		 			},
 		 			{
-			 			"category":"Tablet",			 			
-		 				"EPUB":"yes",
-		 				"PDF":"depends",
-		 				"PubApp":"yes"
+			 			"category":"Tablet",
+		 				"checked":true
 			 		},
 			 		{
 			 			"category":"Phone",
-		 				"EPUB":"yes",
-		 				"PDF":"no",
-		 				"PubApp":"depends"
+		 				"checked":true
 			 			
 			 		}
 			 	];
@@ -100,7 +94,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"yes"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"yes",
 			  	     	"audio":"yes",
 			  	     	"video":"depends",
 			  	     	"video_markers":"no",
@@ -139,10 +133,10 @@
 			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"yes",
-				  	     	"tablet":"yes",
-				  	     	"phone":"no"
+				  	     	"tablet":"depends",
+				  	     	"phone":"depends"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"yes",
@@ -184,7 +178,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"depends"
 			  	     	},
-			  	     	"reflowable","partially",
+			  	     	"reflowable":"partially",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"no",
@@ -224,9 +218,51 @@
 			  	     	"device":{
 				  	     	"desktop":"no",
 				  	     	"tablet":"yes",
-				  	     	"phone":"yes"
+				  	     	"phone":"depends"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"no",
+  	     	  	     	"audio":"yes",
+  	     	  	     	"video":"yes",
+  	     	  	     	"video_markers":"no",
+  	     	  	     	"hyperlinks":"yes",
+  	     	  	     	"hyperlinks_internal":"partially",
+  	     	  	     	"pub_thumb":"yes",
+  	     	  	     	"javascript":"partially",
+  	     	  	     	"form":"partially",
+  	     	  	     	"button_actions":"yes",
+  	     	  	     	"multiple_actions":"yes",
+  	     	  	     	"zoomable":"yes",
+  	     	  	     	"pan":"yes",
+  	     	  	     	"slideshow":"yes",
+  	     	  	     	"video_slideshow":"yes",
+  	     	  	     	"content_replacement":"yes",
+  	     	  	     	"inpage_embeded_web":"yes",
+  	     	  	     	"panoramas":"yes",
+  	     	  	     	"3d":"yes",
+  	     	  	     	"in-page_scroll":"yes",
+  	     	  	     	"vectors":"no",
+  	     	  	     	"inpage_animated":"no",
+  	     	  	     	"drag_drop":"no",
+  	     	  	     	"dynamic":"yes",
+  	     	  	     	"attachments":"no",
+  	     	  	     	"complex":{
+  	     	  	     		"text":"easy",
+  	     		  	     	"images_callouts":"images and callouts must be properly structured",
+  	     		  	     	"background_images":"must flatten text into an image",
+  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
+  	     		  	     	"tables":"info TK"
+  	     	  	     	}
+			  	     },
+			  	     {
+			  	    	"name": "HTML5",
+			  	     	"accessible": "yes",
+			  	     	"nonaccessible": "yes",
+			  	     	"device":{
+				  	     	"desktop":"no",
+				  	     	"tablet":"yes",
+				  	     	"phone":"depends"
+			  	     	},
+			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"yes",
@@ -250,7 +286,7 @@
   	     	  	     	"inpage_animated":"yes",
   	     	  	     	"drag_drop":"yes",
   	     	  	     	"dynamic":"yes",
-  	     	  	     	"attachments":"yes",
+  	     	  	     	"attachments":"no",
   	     	  	     	"complex":{
   	     	  	     		"text":"easy",
   	     		  	     	"images_callouts":"images and callouts must be properly structured",
@@ -264,13 +300,14 @@
 						
 				//needs to be retought
 				//watch the checkboxes and if one changes, change the model
-				//console.log($scope)
-				$scope.deviceModel = function () {					
-
+				console.log($scope.devices[0].checked);
+				
+				$scope.deviceModel = function ($scope) {
 
 						var deviceList = ["yes","yes","yes"];
-						if ($scope.deviceDesktop == true){
-							deviceList.splice(2, 1, "no");
+						if ($scope.devicesDesktop == true){
+							
+							//deviceList.splice(2, 1, "no");
 				       		// for (var i=0;i<$scope.formats.length;i++){
 				       		// 	deviceList.push($scope.formats[i].device.desktop);
 				       		// };       						 
@@ -313,9 +350,9 @@
 						</tr>
 						<tr>
 							<td>Device</td>
-							<td ng-repeat="device in deviceModel()" class="">
-								<span>
-									{{device}}
+							<td ng-repeat="checked in devices" class="">
+								<span ng-show="checked.checked">
+									{{checked.checked}}
 								</span>
 								
 							</td>
@@ -341,25 +378,13 @@
 					<div class="control-group">
 					    <div class="controls" >	
 					    	<label class="control-label">Which devices will you product be distributed to?</label>
-					    	<!-- <label ng-repeat="device in devices" class="checkbox inline">
-					    		<input 
-					    			type="checkbox"  
-					    			value="{{device.category}}" 
-					    			ng-change="selectedDevice()" 
-					    			ng-model="deviceModel" "device.category"
-					    			>
+					    	<label ng-repeat="device in devices" class="checkbox inline">
+					    		{{devices.category}}
+					    		<input type="checkbox" class="checkbox inline" ng-model="device.checked"  />
 				    			<span>{{device.category}}</span>
-					    	</label> -->
+					    	</label>
 
-							<label class="checkbox inline">
-								<input ng-model="deviceDesktop" type="checkbox" value="desktop" ng-change="deviceModel()">Desktop</input>
-							</label>
-							<label class="checkbox inline">
-								<input ng-model="deviceTablet" type="checkbox" ng-change="deviceModel()" value="ipad">Tablet</input>
-							</label>
-							<label class="checkbox inline">
-								<input ng-model="devicePhone" type="checkbox" ng-change="deviceModel()" value="phone">Phone</input>
-							</label>
+						
 							
 						</div>
 					</div>
