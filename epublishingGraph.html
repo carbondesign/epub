@@ -67,7 +67,7 @@
 			    
 			});
 
-			function formatCtrl($scope) {
+			$scope.formatCtrl = function ($scope) {
 			 	$scope.devices = [
 			 		{
 			 			"category":"Desktop",			 		
@@ -100,7 +100,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"yes"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"yes",
 			  	     	"audio":"yes",
 			  	     	"video":"depends",
 			  	     	"video_markers":"no",
@@ -142,7 +142,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"no"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"yes",
@@ -170,7 +170,7 @@
   	     	  	     	"complex":{
   	     	  	     		"text":"text must be structured for correct 508",
   	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
+  	     	  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
   	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
   	     		  	     	"tables":"tables must be properly structured for 508"
   	     	  	     	}
@@ -184,7 +184,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"depends"
 			  	     	},
-			  	     	"reflowable","partially",
+			  	     	"reflowable":"partially",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"no",
@@ -226,7 +226,7 @@
 				  	     	"tablet":"yes",
 				  	     	"phone":"yes"
 			  	     	},
-			  	     	"reflowable","yes",
+			  	     	"reflowable":"yes",
   	     	  	     	"audio":"yes",
   	     	  	     	"video":"yes",
   	     	  	     	"video_markers":"yes",
