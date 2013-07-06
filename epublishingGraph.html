@@ -94,7 +94,6 @@
 			  	    {
 			  	    	"name": "EPUB",
 			  	     	"accessible": "yes",
-			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"yes",
 				  	     	"tablet":"yes",
@@ -136,7 +135,6 @@
 			  	    {
 			  	    	"name": "PDF",
 			  	     	"accessible": "yes",
-			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"yes",
 				  	     	"tablet":"depends",
@@ -178,7 +176,6 @@
 		  	     	{
 			  	    	"name": "Digital Replica",
 			  	     	"accessible": "no",
-			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"no",
 				  	     	"tablet":"yes",
@@ -220,7 +217,6 @@
 			  	    {
 			  	    	"name": "PubApp",
 			  	     	"accessible": "no",
-			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"no",
 				  	     	"tablet":"yes",
@@ -262,7 +258,6 @@
 			  	     {
 			  	    	"name": "HTML5",
 			  	     	"accessible": "yes",
-			  	     	"nonaccessible": "yes",
 			  	     	"device":{
 				  	     	"desktop":"no",
 				  	     	"tablet":"yes",
@@ -371,10 +366,7 @@
 					    <div class="controls">	
 					    	<label class="control-label">Does your project need to be 508 compliant?  </label>
 							<label class="radio inline" for="accessible">
-								<input type="radio" ng-model="accessModel"  name="accessible" value="true" checked="checked"> Yes</input>
-							</label>
-							<label class="radio inline" for="accessible">
-								<input type="radio" ng-model="accessModel"  name="accessible" value="false"  > No </input>
+								<input type="checkbox" ng-model="accessModel"  name="accessible" value="true"> Yes
 							</label>
 						</div>
 					</div>	
