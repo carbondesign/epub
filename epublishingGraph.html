@@ -455,7 +455,6 @@
 			<div  class="row-fluid" id="chartContainer"></div>
 			<div  class="row-fluid" ng-controller="formatCtrl">
 				<h2>Which format is right for my project?</h2>
-				<p ng-repeat="item in selection.ids">{{item}}</p>
 				<table class="table table-striped" id="featuresList">
 					<thead><tr>
 						<th> <a href="" ng-click="predicate = 'sort'; reverse=false">?#</a></th>
@@ -488,7 +487,7 @@
 					    <div class="controls" >	
 					    	<label class="control-label">{{question.question}}</label>
 							<label class="checkbox inline" for="{{question.id}}">
-								<input type="checkbox" id="question.id" ng-model="question.id" name="group"> Yes
+								<input type="checkbox" id="question.id" ng-model="question.checked" name="group"> Yes
 							</label>
 						</div>
 					</div>
