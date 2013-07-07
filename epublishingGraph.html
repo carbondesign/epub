@@ -90,213 +90,339 @@
 			 		}
 			 	];
 
-			  	$scope.formats = [
-			  	    {
-			  	    	"name": "EPUB",
-			  	     	"accessible": "yes",
-			  	     	"device":{
-				  	     	"desktop":"yes",
-				  	     	"tablet":"yes",
-				  	     	"phone":"yes"
-			  	     	},
-			  	     	"reflowable":"yes",
-			  	     	"audio":"yes",
-			  	     	"video":"depends",
-			  	     	"video_markers":"no",
-			  	     	"hyperlinks":"yes",
-			  	     	"hyperlinks_internal":"no",
-			  	     	"pub_thumb":"partially",
-			  	     	"javascript":"partially",
-			  	     	"form":"no",
-			  	     	"button_actions":"no",
-			  	     	"multiple_actions":"no",
-			  	     	"zoomable":"no",
-			  	     	"pan":"no",
-			  	     	"slideshow":"no",
-			  	     	"video_slideshow":"no",
-			  	     	"content_replacement":"no",
-			  	     	"inpage_embeded_web":"no",
-			  	     	"panoramas":"no",
-			  	     	"3d":"no",
-			  	     	"in-page_scroll":"no",
-			  	     	"vectors":"yes",
-			  	     	"inpage_animated":"partially",
-			  	     	"drag_drop":"no",
-			  	     	"dynamic":"no",
-			  	     	"attachments":"yes",
-			  	     	"complex":{
-			  	     		"text":"text must be structured for correct flow",
-				  	     	"images_callouts":"images and callouts must be properly structured for correct flow",
-				  	     	"background_images":"must flatten text into an image",
-				  	     	"multi_sections":"sections, images, and story must be properly structured",
-				  	     	"tables":"info TK"
-			  	     	}
-			  	    },
-			  	    {
-			  	    	"name": "PDF",
-			  	     	"accessible": "yes",
-			  	     	"device":{
-				  	     	"desktop":"yes",
-				  	     	"tablet":"depends",
-				  	     	"phone":"depends"
-			  	     	},
-			  	     	"reflowable":"yes",
-  	     	  	     	"audio":"yes",
-  	     	  	     	"video":"yes",
-  	     	  	     	"video_markers":"yes",
-  	     	  	     	"hyperlinks":"yes",
-  	     	  	     	"hyperlinks_internal":"yes",
-  	     	  	     	"pub_thumb":"yes",
-  	     	  	     	"javascript":"yes",
-  	     	  	     	"form":"yes",
-  	     	  	     	"button_actions":"yes",
-  	     	  	     	"multiple_actions":"yes",
-  	     	  	     	"zoomable":"yes",
-  	     	  	     	"pan":"no",
-  	     	  	     	"slideshow":"yes",
-  	     	  	     	"video_slideshow":"yes",
-  	     	  	     	"content_replacement":"yes",
-  	     	  	     	"inpage_embeded_web":"partially",
-  	     	  	     	"panoramas":"no",
-  	     	  	     	"3d":"no",
-  	     	  	     	"in-page_scroll":"no",
-  	     	  	     	"vectors":"yes",
-  	     	  	     	"inpage_animated":"no",
-  	     	  	     	"drag_drop":"no",
-  	     	  	     	"dynamic":"yes",
-  	     	  	     	"attachments":"yes",
-  	     	  	     	"complex":{
-  	     	  	     		"text":"text must be structured for correct 508",
-  	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
-  	     		  	     	"tables":"tables must be properly structured for 508"
-  	     	  	     	}
+			 	$scope.features=[
+		  	     	{
+		  	     		"id":"accces",
+		  	     		"name":"508",
+		  	     		"sort":1,
+		  	     		"question":"Does your product need to be 508 compliant?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
 		  	     	},
 		  	     	{
-			  	    	"name": "Digital Replica",
-			  	     	"accessible": "no",
-			  	     	"device":{
-				  	     	"desktop":"no",
-				  	     	"tablet":"yes",
-				  	     	"phone":"depends"
-			  	     	},
-			  	     	"reflowable":"partially",
-  	     	  	     	"audio":"yes",
-  	     	  	     	"video":"yes",
-  	     	  	     	"video_markers":"no",
-  	     	  	     	"hyperlinks":"yes",
-  	     	  	     	"hyperlinks_internal":"no",
-  	     	  	     	"pub_thumb":"yes",
-  	     	  	     	"javascript":"no",
-  	     	  	     	"form":"no",
-  	     	  	     	"button_actions":"no",
-  	     	  	     	"multiple_actions":"no",
-  	     	  	     	"zoomable":"yes",
-  	     	  	     	"pan":"partially",
-  	     	  	     	"slideshow":"no",
-  	     	  	     	"video_slideshow":"no",
-  	     	  	     	"content_replacement":"no",
-  	     	  	     	"inpage_embeded_web":"no",
-  	     	  	     	"panoramas":"no",
-  	     	  	     	"3d":"no",
-  	     	  	     	"in-page_scroll":"no",
-  	     	  	     	"vectors":"no",
-  	     	  	     	"inpage_animated":"no",
-  	     	  	     	"drag_drop":"no",
-  	     	  	     	"dynamic":"no",
-  	     	  	     	"attachments":"no",
-  	     	  	     	"complex":{
-  	     	  	     		"text":"text must be structured for correct 508",
-  	     		  	     	"images_callouts":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     		  	     	"background_images":"images and callouts must be properly structured, tagged, and given alaternate text for 508",
-  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
-  	     		  	     	"tables":"tables must be properly structured for 508"
-  	     	  	     	}
-			  	     },
-			  	    {
-			  	    	"name": "PubApp",
-			  	     	"accessible": "no",
-			  	     	"device":{
-				  	     	"desktop":"no",
-				  	     	"tablet":"yes",
-				  	     	"phone":"depends"
-			  	     	},
-			  	     	"reflowable":"no",
-  	     	  	     	"audio":"yes",
-  	     	  	     	"video":"yes",
-  	     	  	     	"video_markers":"no",
-  	     	  	     	"hyperlinks":"yes",
-  	     	  	     	"hyperlinks_internal":"partially",
-  	     	  	     	"pub_thumb":"yes",
-  	     	  	     	"javascript":"partially",
-  	     	  	     	"form":"partially",
-  	     	  	     	"button_actions":"yes",
-  	     	  	     	"multiple_actions":"yes",
-  	     	  	     	"zoomable":"yes",
-  	     	  	     	"pan":"yes",
-  	     	  	     	"slideshow":"yes",
-  	     	  	     	"video_slideshow":"yes",
-  	     	  	     	"content_replacement":"yes",
-  	     	  	     	"inpage_embeded_web":"yes",
-  	     	  	     	"panoramas":"yes",
-  	     	  	     	"3d":"yes",
-  	     	  	     	"in-page_scroll":"yes",
-  	     	  	     	"vectors":"no",
-  	     	  	     	"inpage_animated":"no",
-  	     	  	     	"drag_drop":"no",
-  	     	  	     	"dynamic":"yes",
-  	     	  	     	"attachments":"no",
-  	     	  	     	"complex":{
-  	     	  	     		"text":"easy",
-  	     		  	     	"images_callouts":"images and callouts must be properly structured",
-  	     		  	     	"background_images":"must flatten text into an image",
-  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
-  	     		  	     	"tables":"info TK"
-  	     	  	     	}
-			  	     },
-			  	     {
-			  	    	"name": "HTML5",
-			  	     	"accessible": "yes",
-			  	     	"device":{
-				  	     	"desktop":"no",
-				  	     	"tablet":"yes",
-				  	     	"phone":"depends"
-			  	     	},
-			  	     	"reflowable":"yes",
-  	     	  	     	"audio":"yes",
-  	     	  	     	"video":"yes",
-  	     	  	     	"video_markers":"yes",
-  	     	  	     	"hyperlinks":"yes",
-  	     	  	     	"hyperlinks_internal":"yes",
-  	     	  	     	"pub_thumb":"partially",
-  	     	  	     	"javascript":"yes",
-  	     	  	     	"form":"yes",
-  	     	  	     	"button_actions":"yes",
-  	     	  	     	"multiple_actions":"yes",
-  	     	  	     	"zoomable":"yes",
-  	     	  	     	"pan":"yes",
-  	     	  	     	"slideshow":"yes",
-  	     	  	     	"video_slideshow":"yes",
-  	     	  	     	"content_replacement":"yes",
-  	     	  	     	"inpage_embeded_web":"yes",
-  	     	  	     	"panoramas":"yes",
-  	     	  	     	"3d":"yes",
-  	     	  	     	"in-page_scroll":"yes",
-  	     	  	     	"vectors":"yes",
-  	     	  	     	"inpage_animated":"yes",
-  	     	  	     	"drag_drop":"yes",
-  	     	  	     	"dynamic":"yes",
-  	     	  	     	"attachments":"no",
-  	     	  	     	"complex":{
-  	     	  	     		"text":"easy",
-  	     		  	     	"images_callouts":"images and callouts must be properly structured",
-  	     		  	     	"background_images":"must flatten text into an image",
-  	     		  	     	"multi_sections":"sections, images, and story must be properly structured",
-  	     		  	     	"tables":"info TK"
-  	     	  	     	}
-			  	     }
-			  	  ];
+		  	     		"id":"reflow",
+		  	     		"name":"Reflowable Text",
+		  	     		"sort":2,
+		  	     		"question":"Does your need to have reflowable text?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"partially",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"audio",
+		  	     		"name":"Audio",
+		  	     		"sort":3,
+		  	     		"question":"Does your product use audio files?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"video",
+		  	     		"name":"Video",
+		  	     		"sort":4,
+		  	     		"question":"Does your product use video files?",
+		  	     		"EPUB":"partially",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"markers",
+		  	     		"name":"Video Markers",
+		  	     		"question":"Does your product use video markers or links to specific time frames?",
+		  	     		"sort":5,
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"hyperlinks",
+		  	     		"name":"Hyperlinks",
+		  	     		"sort":6,
+		  	     		"question":"Does your product require hyperlinks?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"hyper_intern",
+		  	     		"name":"Hyperlinks to Internal Content",
+		  	     		"sort":7,
+		  	     		"question":"Does your product require hyperlinks to internal content?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"partially",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{	
+		  	     		"id":"pubthumb",		 			  	     		
+		  	     		"name":"Publication-page Thumbnail",
+		  	     		"sort":8,
+		  	     		"question":"Does your product require publication-pag thumbnails?",
+		  	     		"EPUB":"partially",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"partially",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"javascript",
+		  	     		"name":"Javascript",
+		  	     		"sort":9,
+		  	     		"question":"Does your product use javascript?",
+		  	     		"EPUB":"partially",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"partially",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"forms",
+		  	     		"name":"Forms",
+		  	     		"sort":10,
+		  	     		"question":"Does your product require forms?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"partially",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"button",
+		  	     		"name":"Button Actions",
+		  	     		"sort":11,
+		  	     		"question":"Does your product require buttons that preform an action?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"multiaction",
+		  	     		"name":"Multiple Actions On Buttons",
+		  	     		"sort":12,
+		  	     		"question":"Does your product require buttons that preform an multiple actions?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"resize",
+		  	     		"name":"Text Resize",
+		  	     		"sort":13,
+		  	     		"question":"Does your text need to be resizable?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"zoom",
+		  	     		"name":"Zoomable",
+		  	     		"sort":14,
+		  	     		"question":"Does your product need to be zoomable?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"yes",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"pan",
+		  	     		"name":"Panning",
+		  	     		"sort":15,
+		  	     		"question":"Do your images need to be pannable?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"no",
+		  	     		"Replica":"partially",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"panorama",
+		  	     		"name":"Panoramas",
+		  	     		"question":"Does your product require panoramas?",
+		  	     		"sort":16,
+		  	     		"EPUB":"no",
+		  	     		"PDF":"no",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"slideshow",
+		  	     		"name":"Slideshow",
+		  	     		"sort":17,
+		  	     		"question":"Do you need an image or text slideshow?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"videoslide",
+		  	     		"name":"Video Slideshow",
+		  	     		"sort":18,
+		  	     		"question":"Do you need a video slideshow?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"replace",
+		  	     		"name":"Content Replacement",
+		  	     		"sort":19,
+		  	     		"question":"Does your product require content replacement?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"webcontent",
+		  	     		"name":"In-page Embeded Web Content",
+		  	     		"sort":20,
+		  	     		"question":"Does your product require in-page embeded web content?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"partially",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes", 
+		  	     		"checked":false
+		  	     	},
+		  	     	
+		  	     	{
+		  	     		"id":"3d",
+		  	     		"name":"3D",
+		  	     		"sort":21,
+		  	     		"question":"Does your product require 3d rotatable objects?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"no",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"scrolling",
+		  	     		"name":"In-page Scrolling",
+		  	     		"sort":22,
+		  	     		"question":"Does your product require in-page scrolling?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"no",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"vector",
+		  	     		"name":"Vectors Images",
+		  	     		"sort":23,
+		  	     		"question":"Does your product require vector images?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"animation",
+		  	     		"name":"In-page Animated",
+		  	     		"sort":24,
+		  	     		"question":"Does your product require in-pageanimation?",
+		  	     		"EPUB":"partially",
+		  	     		"PDF":"no",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"dragdrop",
+		  	     		"name":"Drag and Drop",
+		  	     		"sort":25,
+		  	     		"question":"Does your product require drag and drop items?",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"no",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"dynamic",
+		  	     		"name":"Dynamic Server Content",
+		  	     		"sort":26,
+		  	     		"question":"Does your product require content to be served dynamically from a web server?",
+		  	     		"EPUB":"yes",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"yes",
+		  	     		"HTML5":"yes",
+		  	     		"checked":false
+		  	     	},
+		  	     	{
+		  	     		"id":"attach",
+		  	     		"name":"Attachments",
+		  	     		"sort":27,
+		  	     		"question":"Does your product require document attachments",
+		  	     		"EPUB":"no",
+		  	     		"PDF":"yes",
+		  	     		"Replica":"no",
+		  	     		"App":"no",
+		  	     		"HTML5":"partially",
+		  	     		"checked":false
+		  	     	
+		  	     	}
+	  	     	];
+
+	  	     	$scope.predicate = '';
+	  	     	$scope.selection = {
+  	     	        ids: {"access":true}
+  	     	    };
 
 						
 				$scope.deviceModel = function () {	
@@ -315,117 +441,7 @@
 
 					return	deviceList; 
 				};
-				$scope.checkTotal = function (){
-					//create a master grid object
-					var gridObj = {}
-					//find out howmany rows and colllums
-					var $epubTrow = $('table#featuresList tbody tr');
-					var $epubTcol = $('table#featuresList thead tr').first().find("th");
-					
-					
-
-					
-					///can't figure this out...wil do a stackoverflow on it.
-					var masterArray = new Array();
-						for ( var i = 1; i < $epubTcol.length+1; i++ ) {
-							var $arrayName = new Array();
-							$epubTrow.each(function (){
-								$arrayName.push($(this).find("td:nth-child("+i+")").text().replace(/\t/g,'').replace(/[\n\r]/g,''));							
-							});
-							masterArray.push($arrayName);
-							
-						};
-					var masterPairCount = [], a = masterArray[0], prev;
-					var set1 = function(){
-						//creates a set. set needs to be added to masterPairCount
-					    var  b = masterArray[1], keyPairCount = [];					   
-					  	for ( var i = 0; i < a.length; i++ ) {
-						  	keyPairCount[a[i]]= b[i];	
-					  	};
-					  	return keyPairCount;
-					};
-					var set2 = function(){
-						var  b = masterArray[2], keyPairCount = [];
-
-					  	for ( var i = 0; i < a.length; i++ ) {
-						  	keyPairCount[a[i]]= b[i];	
-					  	};
-					  	return keyPairCount;
-				  	};
-				  	var set3 = function(){
-						var  b = masterArray[3], keyPairCount = [];
-
-					  	for ( var i = 0; i < a.length; i++ ) {
-						  	keyPairCount[a[i]]= b[i];	
-					  	};
-					  	return keyPairCount;
-				  	};
-				  	var set4 = function(){
-						var  b = masterArray[4], keyPairCount = [];
-
-					  	for ( var i = 0; i < a.length; i++ ) {
-						  	keyPairCount[a[i]]= b[i];	
-					  	};
-					  	return keyPairCount;
-				  	};
-				  	var set5 = function(){
-						var  b = masterArray[5], keyPairCount = [];
-
-					  	for ( var i = 0; i < a.length; i++ ) {
-						  	keyPairCount[a[i]]= b[i];	
-					  	};
-					  	return keyPairCount;
-				  	}
-				  	
-				  	 masterPairCount.push(set1());
-				  	 masterPairCount.push(set2());
-				  	 masterPairCount.push(set3());
-				  	 masterPairCount.push(set4());
-				  	 masterPairCount.push(set5());
-				  	 console.log(masterPairCount)
-					  
-					  	
-					  
-					  
-
-  	
-
-				  	
-
-				  	//add the headers to the object
-					$epubTcol.each(function (){
-						$catname = $(this).text();
-						//setup arrays for each collumn with key pairs
-						for ( var i = 1; i < a.length; i++ ) {
-							var name = "set" + i + "()";
-							var obj = eval("(" + name + ")");
-						gridObj[$catname] = {
-							data:obj
-							}
-						}
-					});
-					console.log(gridObj)
-
-
-
-				    // for ( var i = 1; i < masterArray.length; i++ ) {
-				    // 	masterArray[i].sort();
-				    //     if ( masterArray[i] !== prev ) {
-				    //         a.push(masterArray[i]);
-				    //         b.push(1);
-				    //     } else {
-				    //         b[b.length-1]++;
-				    //     }
-				    //     prev = ("epub"+i)[i];
-				    // }return [a, b];
-				    
-
-				   
-				    
-				    //console.log(gridObj);
-				    
-
-				}		
+				$scope.checkTotal = function (){}	
 			}
 				   			
 		</script>
@@ -439,68 +455,44 @@
 			<div  class="row-fluid" id="chartContainer"></div>
 			<div  class="row-fluid" ng-controller="formatCtrl">
 				<h2>Which format is right for my project?</h2>
-				
+				<p ng-repeat="item in selection.ids">{{item}}</p>
 				<table class="table table-striped" id="featuresList">
-					<thead><tr><th>Feature</th><th ng-repeat="head in formats">{{head.name}}</th></thead>
+					<thead><tr>
+						<th> <a href="" ng-click="predicate = 'sort'; reverse=false">?#</a></th>
+						<th> <a href="" ng-click="predicate = 'name'; reverse=false">Feature</a></th>
+						<th> <a href="" ng-click="predicate = 'EPUB'; reverse=false">EPUB</a></th>
+						<th> <a href="" ng-click="predicate = 'PDF'; reverse=false">PDF</a></th>
+						<th> <a href="" ng-click="predicate = 'Replica'; reverse=false">Replica</a></th>
+						<th> <a href="" ng-click="predicate = 'App'; reverse=false">Pub App</a></th>
+						<th> <a href="" ng-click="predicate = 'HTML5'; reverse=false">HTML5</a></th>
+					</thead>
 					<tbody>				
-						<tr ng-show="accessModel">
-							<td>508</td>
-							<td ng-repeat="format in formats" class="{{format.name}}">
-								<span >
-									{{format.accessible}}
-								</span>
-								
-							</td>
-						</tr>
-						<tr ng-show="audioModel">
-							<td>Audio</td>
-							<td ng-repeat="format in formats" class="{{format.name}}">
-								<span >
-									{{format.audio}}
-								</span>
-								
-							</td>
-						</tr>
-						<tr ng-show="videoModel">
-							<td>Video</td>
-							<td ng-repeat="format in formats" class="{{format.name}}">
-								<span >
-									{{format.video}}
-								</span>
-								
-							</td>
-						</tr>
-						<tr>
-							<td>Device</td>
-							<td ng-repeat="device in deviceModel()" class="">
-								<span>
-									{{device}}
-								</span>
-								
-							</td>
+						<tr ng-repeat="data in features | orderBy:predicate:reverse" ng-show="data.checked" > 
+							<td>{{data.sort}}</td>
+							<td>{{data.name}}</td>
+							<td>{{data.EPUB}}</td>
+							<td>{{data.PDF}}</td>
+							<td>{{data.Replica}}</td>
+							<td>{{data.App}}</td>
+							<td>{{data.HTML5}}</td>
 						</tr>
 					</tbody>
 				</table>
 				
 				
 				<form>	
-					<div class="control-group">
-					    <div class="controls">	
-					    	<label class="control-label">Does your project need to be 508 compliant?  </label>
-							<label class="checkbox inline" for="accessible">
-								<input  ng-change="checkTotal()" type="checkbox" ng-model="accessModel"  name="accessible" value="true"> Yes
-							</label>
-
-					    	<label class="control-label">Does your project use audio?  </label>
-							<label class="checkbox inline" for="audio">
-								<input ng-change="checkTotal()" type="checkbox" ng-model="audioModel" name="audio"> Yes
-							</label>
-							<label class="control-label">Does your project use video?  </label>
-							<label class="checkbox inline" for="video">
-								<input ng-change="checkTotal()" type="checkbox" ng-model="videoModel" name="video"> Yes
+					<hr>
+						
+					<hr>
+					<div class="control-group" ng-repeat="question in features">
+					    <div class="controls" >	
+					    	<label class="control-label">{{question.question}}</label>
+							<label class="checkbox inline" for="{{question.id}}">
+								<input type="checkbox" id="question.id" ng-model="question.id" name="group"> Yes
 							</label>
 						</div>
-					</div>	
+					</div>
+
 					<label for="layout">How complex is your layout?</label>
 					<input type="range" name="layout" min="1" max="5">
 					<div class="control-group">
