@@ -440,8 +440,12 @@
 					return	deviceList; 
 				};
 				$scope.checkTotal = function (index){
+					if($scope.features[index].EPUB == "yes"){
 					$scope.selection.push(
-						$scope.features[index]);
+						$scope.features[index].EPUB
+
+						);}
+					console.log($scope.features[index].EPUB)
 
 					var count = 0;
 					
@@ -467,7 +471,7 @@
 			<div  class="row-fluid" id="chartContainer"></div>
 			<div  class="row-fluid" ng-controller="formatCtrl">
 				<h2>Which format is right for my project?</h2>
-				<p ng-repeat="item in selection | filter:'partially'"><span>{{item.EPUB}}</span></p>
+				<p ng-repeat="item in selection | filter:'yes'"><span>{{item}}{{selection.length}}</span></p>
 				<table class="table table-striped" id="featuresList">
 					<thead><tr>
 						<th> <a href="" ng-click="predicate = 'sort'; reverse=false">?#</a></th>
