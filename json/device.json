@@ -1,0 +1,21 @@
+[
+	{
+		"category":"Desktop",			 		
+		"EPUB":"yes",
+		"PDF":"yes",
+		"PubApp":"no"
+	},
+	{
+		"category":"Tablet",			 			
+		"EPUB":"yes",
+		"PDF":"depends",
+		"PubApp":"yes"
+	},
+	{
+		"category":"Phone",
+		"EPUB":"yes",
+		"PDF":"no",
+		"PubApp":"depends"
+		
+	}
+]
